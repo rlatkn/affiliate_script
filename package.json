@@ -1,0 +1,33 @@
+{
+  "name": "partner-script",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack -p  --mode=production",
+    "dev": "node_modules/.bin/webpack-dev-server --mode=development",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-preset-env": "^1.6.1",
+    "dotenv-webpack": "^1.5.5",
+    "html-webpack-plugin": "^3.1.0",
+    "js-cookie": "^2.2.0",
+    "query-string": "^6.0.0",
+    "web3": "^1.0.0-beta.33"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-loader": "^7.1.4",
+    "eslint": "^4.19.1",
+    "eslint-friendly-formatter": "^4.0.0",
+    "file-loader": "^1.1.11",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.4.1",
+    "webpack-cli": "^2.0.13",
+    "webpack-dev-server": "^3.1.1"
+  }
+}
