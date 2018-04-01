@@ -27,19 +27,27 @@ const init = function () {
  * @param {Number} partner
  * @param {Number} amount
  */
-const pay = function (service, partner, amount) {
+const pay = function (service, amount) {
+  const partner = Cookie.get(constants.PARTNER_COOKIE) || null
   return new Promise((resolve, reject) => {
-    contractInstance.pay.sendTransaction(service, partner, { value: web3.toWei(amount, 'ether') }, (error, result) => {
+    contractInstance.pay.sendTransaction(service, partner, { value: Number(web3.toWei(amount, 'ether')).toFixed() }, (error, result) => {
       if (error) reject(error)
       resolve(result)
     })
   })
 }
 
+window.parts = {
+  init,
+  pay
+}
+
 window.addEventListener('load', () => {
   init()
   const form = document.querySelector('.js-form')
   const amountInput = document.querySelector('.js-amount')
+  
+  if (!form || !amountInput) return
 
   form.onsubmit = function (e) {
     e.preventDefault();
@@ -47,13 +55,12 @@ window.addEventListener('load', () => {
     // TODO
     const service = 0
     const partner = 0
-    // const partner = Cookie.get(constants.PARTNER_COOKIE) || null
     const amount = amountInput.value
 
-    pay(Number(service), Number(partner), Number(amount)).then(res => {
+    pay(Number(service), Number(amount)).then(res => {
       console.log('res', res)
     }).catch(error => {
-      console.log('error', error)
+      console.log(error)
     })
   }
 })
